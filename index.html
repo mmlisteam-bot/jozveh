@@ -3,46 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>جزوه جغرافیا (مرتب و خوش‌خوان)</title>
+  <title>جزوه حقوق جزای عمومی – آیین دادرسی کیفری (صفحات ۱ تا ۵)</title>
 
-  <!-- فونت فارسی زیبا (اختیاری؛ اگر اینترنت نباشد، فونت سیستم استفاده می‌شود) -->
+  <!-- فونت فارسی زیبا (اختیاری؛ اگر اینترنت نباشد فونت سیستم استفاده می‌شود) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* تم روشن (دو رنگ اصلی) */
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --text: #17212b;
-      --muted: #5b6672;
-      --border: #e6e8ef;
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#17212b;
+      --muted:#5b6672;
+      --border:#e6e8ef;
 
-      --primary: #2d6cdf;   /* رنگ اصلی */
-      --accent:  #ffb020;   /* رنگ دوم (اکسنت) */
+      --primary:#2d6cdf; /* رنگ اصلی */
+      --accent:#ffb020;  /* رنگ دوم */
 
-      --chip: #eef2ff;
-      --note: #fff7db;
-
+      --note:#fff7db;
       --shadow: 0 10px 30px rgba(0,0,0,.08);
       --radius: 18px;
       --lh: 2.05;
     }
 
     [data-theme="dark"]{
-      --bg: #0f1220;
-      --card: #151a2e;
-      --text: #eef2ff;
-      --muted: #b7c0d8;
-      --border: rgba(255,255,255,.12);
+      --bg:#0f1220;
+      --card:#151a2e;
+      --text:#eef2ff;
+      --muted:#b7c0d8;
+      --border:rgba(255,255,255,.12);
 
-      --primary: #7aa2ff;
-      --accent:  #ffd38a;
+      --primary:#7aa2ff;
+      --accent:#ffd38a;
 
-      --chip: rgba(122,162,255,.14);
       --note: rgba(255,211,138,.14);
-
       --shadow: 0 12px 36px rgba(0,0,0,.35);
     }
 
@@ -54,7 +49,6 @@
       font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
       line-height: var(--lh);
     }
-
     .wrap{ max-width: 980px; margin: 0 auto; }
 
     header{
@@ -62,25 +56,11 @@
       align-items:center; justify-content:space-between;
       margin-bottom: 16px;
     }
+    .title{ display:flex; flex-direction:column; gap:4px; }
+    h1{ margin:0; font-size: 22px; letter-spacing:.2px; }
+    .subtitle{ color: var(--muted); font-size: 13px; }
 
-    .title{
-      display:flex; flex-direction:column; gap:4px;
-    }
-    h1{
-      margin:0;
-      font-size: 22px;
-      letter-spacing: .2px;
-    }
-    .subtitle{
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .toolbar{
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center;
-    }
-
+    .toolbar{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
     .btn{
       border:1px solid var(--border);
       background: var(--card);
@@ -88,14 +68,13 @@
       padding:10px 12px;
       border-radius: 999px;
       cursor:pointer;
-      box-shadow: none;
       font-size: 13px;
       display:flex; gap:8px; align-items:center;
     }
     .btn:hover{ border-color: color-mix(in srgb, var(--primary) 55%, var(--border)); }
 
     .chip{
-      background: var(--chip);
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
       border:1px solid var(--border);
       padding:7px 10px;
       border-radius: 999px;
@@ -104,11 +83,7 @@
       display:flex; gap:8px; align-items:center;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
+    .grid{ display:grid; gap:14px; }
 
     .card{
       background: var(--card);
@@ -118,10 +93,7 @@
       padding: 16px 16px;
     }
 
-    .toc{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 6px;
-    }
+    .toc{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 6px; }
     .toc a{
       text-decoration:none;
       color: var(--primary);
@@ -131,9 +103,7 @@
       border-radius: 999px;
       font-size: 13px;
     }
-    .toc a:hover{
-      background: color-mix(in srgb, var(--primary) 16%, transparent);
-    }
+    .toc a:hover{ background: color-mix(in srgb, var(--primary) 16%, transparent); }
 
     h2{
       margin: 0 0 10px;
@@ -147,11 +117,22 @@
       flex:0 0 auto;
     }
 
-    h3{
-      margin: 14px 0 6px;
-      font-size: 15px;
-      color: var(--text);
+    .metaRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
+    .pill{
+      padding:4px 10px;
+      border-radius:999px;
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      border:1px solid var(--border);
+    }
+
+    h3{ margin: 14px 0 6px; font-size: 15px; }
+    ul{ margin: 8px 0 0; padding: 0 18px 0 0; }
+    li{ margin: 6px 0; }
 
     .def{
       padding: 10px 12px;
@@ -167,12 +148,25 @@
       background: var(--note);
       border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
       margin-top: 10px;
-      color: color-mix(in srgb, var(--text) 92%, var(--muted));
     }
 
-    ul{ margin: 8px 0 0; padding: 0 18px 0 0; }
-    li{ margin: 6px 0; color: var(--text); }
-    .muted{ color: var(--muted); }
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width:720px){
+      .split{ grid-template-columns: 1fr; }
+    }
+
+    .kv{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+    }
+    .kv .k{ color: var(--muted); font-size: 13px; }
+    .kv .v{ margin-top: 4px; font-weight: 600; }
 
     footer{
       margin-top: 16px;
@@ -181,7 +175,6 @@
       text-align:center;
     }
 
-    /* چاپ */
     @media print{
       body{ background:#fff; padding:0; }
       .btn, .chip, .toc{ display:none !important; }
@@ -194,8 +187,8 @@
   <div class="wrap">
     <header>
       <div class="title">
-        <h1>جزوه جغرافیا (مرتب و خوش‌خوان)</h1>
-        <div class="subtitle">نسخه‌ی جزوه‌مانند — بدون تست | مناسب مرور سریع و مطالعه</div>
+        <h1>جزوه حقوق جزای عمومی – آیین دادرسی کیفری</h1>
+        <div class="subtitle">صفحات ۱ تا ۵ • قالب مطالعه‌محور • قابل پرینت/PDF</div>
       </div>
 
       <div class="toolbar">
@@ -206,261 +199,216 @@
     </header>
 
     <div class="card">
-      <div class="muted">فهرست سریع</div>
+      <div class="k" style="color:var(--muted);font-size:13px;">فهرست سریع</div>
       <div class="toc">
-        <a href="#geo">تعریف جغرافیا و شاخه‌ها</a>
-        <a href="#concepts">مفاهیم کلیدی</a>
-        <a href="#paradigm">پارادایم‌ها</a>
-        <a href="#branches">تعاریف شاخه‌ها</a>
-        <a href="#borders">انواع مرز</a>
-        <a href="#security">امنیت و محیط امنیتی</a>
-        <a href="#urban-rural">شهر و روستا</a>
-        <a href="#basins">حوزه‌های آبریز ایران</a>
+        <a href="#p1">صفحه ۱</a>
+        <a href="#p2">صفحه ۲</a>
+        <a href="#p3">صفحه ۳</a>
+        <a href="#p4">صفحه ۴</a>
+        <a href="#p5">صفحه ۵</a>
       </div>
     </div>
 
     <div class="grid">
 
-      <section class="card" id="geo">
-        <h2><span class="dot"></span>تعریف جغرافیا و شاخه‌ها</h2>
-
-        <div class="def">
-          <strong>جغرافیا</strong> روابط متقابل انسان و محیط را بررسی می‌کند و مکان‌یابی پدیده‌ها، پدیده‌های مکانی و وسعت مکانی مسائل را مطالعه می‌نماید.
+      <!-- صفحه 1 -->
+      <section class="card" id="p1">
+        <h2><span class="dot"></span>صفحه ۱</h2>
+        <div class="metaRow">
+          <span class="pill">تاریخ: ۱۴۰۴/۰۸/۱۰</span>
         </div>
 
-        <h3>دو شاخه اصلی</h3>
-        <ul>
-          <li><strong>جغرافیای طبیعی</strong></li>
-          <li><strong>جغرافیای انسانی</strong></li>
-        </ul>
-
-        <h3>جغرافیای طبیعی</h3>
+        <h3>مقدمه</h3>
         <div class="def">
-          علمی است که محیط طبیعی و تأثیر عوامل و عناصر طبیعی بر محیط زندگی انسان‌ها را مطالعه می‌کند.
+          حقوق جزا با دستور و ضمانت اجرای کیفری سروکار دارد و هدف آن <strong>پیشگیری از جرم</strong> است.
         </div>
 
-        <h3>نمونه زیرشاخه‌های جغرافیای طبیعی</h3>
         <ul>
-          <li>ژئومورفولوژی</li>
-          <li>اقلیم‌شناسی</li>
-          <li>جغرافیای آب</li>
-          <li>اقیانوس‌شناسی</li>
-          <li>بیوژئوگرافی (زیست‌جغرافیا)</li>
-        </ul>
-
-        <h3>نمونه زیرشاخه‌های جغرافیای انسانی</h3>
-        <ul>
-          <li>جغرافیای اقتصادی</li>
-          <li>جغرافیای سیاسی</li>
-          <li>جغرافیای فرهنگی</li>
-          <li>جغرافیای اجتماعی</li>
-          <li>جغرافیای شهری</li>
-          <li>جغرافیای روستایی</li>
+          <li>در مواردی برای برقراری نظم و امنیت، وضع قوانین لازم است.</li>
+          <li>تخلف و مجازات کردن آن‌ها مثل: اتهام، تبرئه، زندان، و رسیدگی از طریق دادگاه.</li>
         </ul>
 
         <div class="note">
-          <strong>یادآوری کوتاه:</strong> «هواشناسی» علم مطالعه هواست. «چرخه آب» فرآیند انتقال و تبدیل مولکول‌های آب از سطح زمین به جو و بازگشت دوباره آن به زمین است.
-        </div>
-      </section>
-
-      <section class="card" id="concepts">
-        <h2><span class="dot"></span>مفاهیم کلیدی</h2>
-
-        <h3>فضا</h3>
-        <div class="def">
-          فضا در جغرافیا <strong>پدیده‌ای انتزاعی</strong> است و صورت‌ها و ساخت‌های آن می‌تواند آفریده ذهن انسان باشد.
+          ⭐ <strong>نکته مهم — ماده ۲ قانون مجازات اسلامی (ق.م.ا):</strong><br>
+          هر رفتاری اعم از فعل یا ترک فعل که در قانون برای آن مجازات تعیین شده باشد، جرم محسوب می‌شود.
         </div>
 
-        <h3>قلمرو مکانی</h3>
-        <div class="def">
-          بخشی مشخص از فضا که توسط فرد یا چیزی اشغال شده باشد.
+        <div class="note">
+          ⭐ <strong>بازدارندگی:</strong><br>
+          در گذشته برای آن مجازات معنی شده است، جرم محسوب می‌شود.
         </div>
 
-        <h3>جغرافیای محیط</h3>
-        <div class="def">
-          محیط کلیدی است که انسان‌ها هم یکی از اجزای آن است؛ جغرافیا روابط متقابل انسان و محیط را مطالعه می‌کند.
-        </div>
-      </section>
-
-      <section class="card" id="paradigm">
-        <h2><span class="dot"></span>پارادایم‌ها</h2>
-
-        <div class="def">
-          <strong>پارادایم</strong> مجموعه‌ای از نظریه‌ها و الگوهایی است که در یک جامعهٔ علمی پذیرفته می‌شود.
-        </div>
-
-        <h3>انواع پارادایم در جغرافیا</h3>
+        <h3>انواع مجازات‌ها (اقسام مجازات‌ها)</h3>
         <ul>
-          <li>جبر محیطی</li>
-          <li>امکان‌گرایی</li>
-          <li>رفتارگرایی</li>
+          <li>حد</li>
+          <li>قصاص</li>
+          <li>دیه</li>
+          <li>تعزیر</li>
+        </ul>
+
+        <div class="def">
+          ⭐ <strong>حد:</strong> مجازاتی است که موجب نوع، میزان و کیفیت اجرای آن در شرع مقدس تعیین شده است.
+        </div>
+      </section>
+
+      <!-- صفحه 2 -->
+      <section class="card" id="p2">
+        <h2><span class="dot"></span>صفحه ۲</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+          <span class="pill">تاریخ: ۱۴۰۴/۰۸/۱۴</span>
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۱۲:</strong><br>
+          قصاص، مجازات اصلی جنایات عمدی بر نفس یا اعضا و منافع است.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۱۷:</strong><br>
+          دیه، مالی است که به سبب جنایت غیرعمدی یا عمدی که قصاص ندارد، مقرر می‌شود.<br>
+          بر نفس، اعضاء و منافع و وظایف تعیین می‌شود.
+        </div>
+
+        <div class="def">
+          ⭐ <strong>تعزیر:</strong> مجازاتی است که مشمول عنوان حد، قصاص و دیه نیست و موجب قانون در موارد ارتکاب محرمات شرعی یا نقض مقررات حکومتی تعیین و اعمال می‌شود.
+        </div>
+
+        <div class="def">
+          <strong>در تعزیر:</strong> نوع، مقدار، کیفیت اجرا و شرایط مربوط به تخفیف، تعلیق و تبدیل مجازات توسط دادگاه تعیین می‌شود.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>اقسام تعزیر:</strong> موجب قانون تعیین می‌شود.
+        </div>
+
+        <div class="def">
+          ⭐ <strong>آیین دادرسی کیفری:</strong><br>
+          به مجموعه مقررات و قواعدی گفته می‌شود که برای کشف جرم، تعقیب متهم، تحقیقات مقدماتی، میانجی‌گری، صلح، صدور رأی، اجرای احکام و اعتراض به آرا پیش‌بینی شده است.
+        </div>
+      </section>
+
+      <!-- صفحه 3 -->
+      <section class="card" id="p3">
+        <h2><span class="dot"></span>صفحه ۳</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+          <span class="pill">تاریخ: ۱۴۰۴/۰۸/۱۳</span>
+        </div>
+
+        <div class="def">
+          تعریف وظایف و اختیارات مقامات قضایی و ضابطین دادگستری و رعایت حقوق متهم، بزه‌دیده و جامعه وضع می‌شود.
+        </div>
+
+        <div class="split">
+          <div class="kv">
+            <div class="k">تعقیب متهم</div>
+            <div class="v">دادستان</div>
+          </div>
+          <div class="kv">
+            <div class="k">اجرای آرا</div>
+            <div class="v">دادسرا</div>
+          </div>
+          <div class="kv">
+            <div class="k">کشف جرم</div>
+            <div class="v">ضابط دادگستری</div>
+          </div>
+          <div class="kv">
+            <div class="k">تحقیقات مقدماتی</div>
+            <div class="v">بازپرس</div>
+          </div>
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۲۸ قانون آیین دادرسی کیفری:</strong><br>
+          ضابطین دادگستری مأمورانی هستند که تحت نظارت و تعلیمات دادستان در کشف جرم، حفظ آثار و دلایل جرم، شناسایی متهم،
+          یافتن و جلوگیری از فرار یا مخفی شدن متهم، تحقیقات مقدماتی، ابلاغ اوراق و اجرای تصمیمات قضایی اقدام می‌کنند.
+        </div>
+
+        <h3>اقسام ضابطین دادگستری</h3>
+        <ul>
+          <li>الف) ضابطان عام</li>
+          <li>ب) ضابطان خاص</li>
         </ul>
       </section>
 
-      <section class="card" id="branches">
-        <h2><span class="dot"></span>تعاریف شاخه‌ها (منتخب)</h2>
+      <!-- صفحه 4 -->
+      <section class="card" id="p4">
+        <h2><span class="dot"></span>صفحه ۴</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+        </div>
 
-        <h3>ژئومورفولوژی</h3>
+        <div class="def">
+          ضابطین دادگستری اشخاصی هستند که به موجب قانون، مأموریت خاصی در حوزه کشف جرم دارند.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>شرایط انتخاب ضابط دادگستری:</strong>
+          <ul>
+            <li>داشتن کارت ضابط</li>
+            <li>آموزش مرتبط</li>
+            <li>صدور ابلاغ از مقام قضایی</li>
+          </ul>
+        </div>
+
+        <div class="def">
+          ضابطین دادگستری حق ورود به منازل و اماکن خصوصی را ندارند مگر به حکم قانون.
+        </div>
+
+        <h3>جرم مشهود و غیرمشهود</h3>
         <ul>
-          <li>از اشکال زمین، تکوین و پراکندگی آن‌ها بحث می‌کند.</li>
-          <li>به مطالعه و بررسی علمی دربارهٔ پیدایش ناهمواری‌ها و تغییر شکل آن‌ها می‌پردازد.</li>
+          <li><strong>الف) جرم مشهود:</strong> جرمی است که در مرئی و منظر ضابطین واقع شود یا بلافاصله پس از وقوع جرم، آثار و علائم آن مشاهده گردد.</li>
+          <li><strong>ب) جرم غیرمشهود:</strong> جرمی است که وقوع آن نیاز به تحقیق و بررسی دارد.</li>
         </ul>
-
-        <h3>بیوژئوگرافی</h3>
-        <div class="def">
-          مطالعه جغرافیایی پراکندگی حیوانی و گیاهی در خشکی‌های سیاره زمین.
-        </div>
-
-        <h3>ژئوپلیتیک</h3>
-        <div class="def">
-          بررسی نقش عوامل محیط جغرافیایی در سیاست؛ در نگاه محلی، مطالعه اثرگذاری عوامل جغرافیایی در تصمیم‌گیری‌های سیاسی صاحبان قدرت.
-        </div>
-
-        <h3>جغرافیای سیاسی</h3>
-        <div class="def">
-          علم مطالعه روابط جغرافیا با سیاست و تبیین پدیده‌های ناشی از تأثیر آن‌ها بر یکدیگر.
-        </div>
-
-        <h3>جغرافیای اقتصادی</h3>
-        <div class="def">
-          انواع فعالیت‌های اقتصادی را که در مکان و فضا انجام می‌شود، مطالعه می‌کند.
-        </div>
-
-        <h3>جغرافیای جمعیت</h3>
-        <div class="def">
-          جنبه‌های فضایی جمعیت و پراکندگی آن را در مکان‌ها مورد مطالعه قرار می‌دهد.
-        </div>
-
-        <h3>جغرافیای ارتباطی</h3>
-        <div class="def">
-          مطالعه محیط طبیعی در رابطه با عکس‌العمل زندگی انسان را جغرافیای ارتباطی می‌گویند.
-        </div>
-
-        <h3>جغرافیای مرز</h3>
-        <div class="def">
-          عامل تشخیص و جدایی یک واحد مشخص از واحدهای کشورهای مجاور.
-        </div>
       </section>
 
-      <section class="card" id="borders">
-        <h2><span class="dot"></span>انواع مرز</h2>
+      <!-- صفحه 5 -->
+      <section class="card" id="p5">
+        <h2><span class="dot"></span>صفحه ۵</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+          <span class="pill">تاریخ: ۱۴۰۴/۱۰/۰۸</span>
+        </div>
+
+        <div class="def">
+          <strong>تعریف متهم:</strong> شخصی است که اتهام به او وارد شده و دلایل کافی برای انتساب جرم وجود دارد.
+        </div>
 
         <ul>
-          <li><strong>مرز طبیعی:</strong> در امتداد عوارض طبیعی یا جغرافیایی مانند کوه، دره، رودخانه یا میان دریاها پدید می‌آید.</li>
-          <li><strong>مرز فرهنگی:</strong> جداکننده فرهنگ‌های متفاوت است.</li>
-          <li><strong>مرز سیاسی:</strong> جداکننده سیستم‌ها/حاکمیت‌های سیاسی از هم است.</li>
-          <li><strong>مرز قومی:</strong> جداکننده اقوام از هم می‌باشد.</li>
-          <li><strong>مرز اقتصادی:</strong> با تأسیس گمرک‌خانه‌ها در مناطق مرزی تعیین می‌شود.</li>
-          <li><strong>مرز تحمیلی:</strong> مورد پسند قدرت برتر است و بدون رضایت موجودیت ضعیف‌تر تعیین می‌شود.</li>
+          <li>متهم باید از حقوق خود مطلع شود.</li>
         </ul>
 
         <div class="note">
-          برای حفظ بهتر: <strong>طبیعی</strong> = کوه/رود/دریا، <strong>اقتصادی</strong> = گمرک، <strong>تحمیلی</strong> = قدرت برتر بدون رضایت طرف ضعیف‌تر.
+          ⭐ <strong>ماده ۴۸:</strong> متهم می‌تواند از وکیل استفاده کند.
         </div>
-      </section>
 
-      <section class="card" id="security">
-        <h2><span class="dot"></span>امنیت و محیط امنیتی</h2>
-
-        <h3>امنیت نظامی</h3>
         <div class="def">
-          سنجش قابلیت نیروهای مسلح جهت دفاع از حکومت و مردم.
+          <strong>دادستان + معاون دادستان</strong> ← دادسرا به‌عنوان مرجع تعقیب
         </div>
-
-        <h3>تهدیدها / موانع امنیت</h3>
-        <ul>
-          <li>مبارزه با تروریسم</li>
-          <li>تغییرات آب‌وهوا</li>
-          <li>امنیت غذایی</li>
-          <li>کمبود آب شیرین</li>
-        </ul>
-
-        <h3>چهار سطح محیط امنیتی</h3>
-        <div class="def">
-          جهانی، منطقه‌ای، بین‌المللی، ملی
-        </div>
-
-        <h3>محیط‌های امنیتی</h3>
-        <div class="def">
-          بر حوزه‌ها، صحنه‌ها و گستره‌های سرزمینی (خودی یا حریف) گفته می‌شود که مأموران یا عوامل اطلاعاتی مأموریت دارند تا در آن فعالیت اطلاعاتی کنند.
-        </div>
-
-        <h3>منطقه‌بندی جغرافیا در مناطق مرزی</h3>
-        <ul>
-          <li>منطقه سفید</li>
-          <li>منطقه قرمز</li>
-          <li>منطقه نارنجی</li>
-          <li>منطقه زرد</li>
-        </ul>
-      </section>
-
-      <section class="card" id="urban-rural">
-        <h2><span class="dot"></span>شهر و روستا</h2>
-
-        <h3>جغرافیای شهری</h3>
-        <div class="def">
-          علت وجود شهرها و چگونگی رشد و توسعه شهر و نیازهای آن را بررسی می‌کند.
-        </div>
-
-        <h3>زیرشاخه‌های جغرافیای شهری</h3>
-        <ul>
-          <li>درون‌شهری</li>
-          <li>برون‌شهری یا تأثیرات متقابل فضایی</li>
-        </ul>
-
-        <h3>انواع شهر (طبق جزوه)</h3>
-        <ul>
-          <li>انقلابی</li>
-          <li>صنعتی</li>
-          <li>فراصنعتی</li>
-          <li>توسعه‌یافته</li>
-          <li>جهان‌سومی</li>
-          <li>محلات شهری</li>
-          <li>الکترونیک</li>
-          <li>مجازی</li>
-          <li>آینده</li>
-          <li>اطلاعاتی</li>
-        </ul>
-
-        <h3>جغرافیای روستایی</h3>
-        <div class="def">
-          بررسی رابطه شهر و روستا و نقش روستاها، مسائل مهاجرت روستاییان، حفظ محیط‌زیست و وضعیت اقتصادی روستاییان.
-        </div>
-
-        <h3>طبقه‌بندی انواع روستا بر حسب نقش و شکل</h3>
-        <ul>
-          <li>پراکنده</li>
-          <li>متمرکز</li>
-          <li>بینابین</li>
-        </ul>
-      </section>
-
-      <section class="card" id="basins">
-        <h2><span class="dot"></span>حوزه‌های آبریز ایران</h2>
-
-        <ul>
-          <li>دریای خزر</li>
-          <li>خلیج فارس و دریای عمان</li>
-          <li>دریاچه ارومیه</li>
-          <li>فلات مرکزی</li>
-          <li>مرزی شرقی</li>
-          <li>قره‌قوم</li>
-        </ul>
 
         <div class="note">
-          اگر خواستی این بخش را دقیق‌تر/کامل‌تر کنیم (مثلاً با نقشه یا مثال شهرها)، بگو تا نسخه ارتقایافته‌اش را بسازم.
+          ⭐ <strong>ماده ۲۵:</strong> ضابطین مکلف به رعایت حقوق شهروندی هستند.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۲۴:</strong> حق داشتن وکیل
+        </div>
+
+        <div class="note">
+          ⭐ <strong>برای احضار متهم:</strong><br>
+          ۵ روز مهلت باید داده شود و موضوع اتهام اعلام گردد.
         </div>
       </section>
 
     </div>
 
     <footer>
-      ساخته‌شده برای مطالعه و مرور — می‌تونی همین فایل رو تو GitHub Pages یا Netlify هم منتشر کنی.
+      جزوه HTML — برای مطالعه، مرور و پرینت • (تم روشن/تاریک قابل تغییر است)
     </footer>
   </div>
 
   <script>
-    // تغییر تم (دو رنگ/دو حالت)
     const root = document.documentElement;
     const label = document.getElementById("themeLabel");
     const btn = document.getElementById("toggleTheme");
@@ -468,10 +416,10 @@
     function setTheme(t){
       root.setAttribute("data-theme", t);
       label.textContent = "تم: " + (t === "dark" ? "تاریک" : "روشن");
-      localStorage.setItem("jozve_theme", t);
+      localStorage.setItem("law_notes_theme", t);
     }
 
-    const saved = localStorage.getItem("jozve_theme");
+    const saved = localStorage.getItem("law_notes_theme");
     setTheme(saved || "light");
 
     btn.addEventListener("click", () => {
