@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>جزوه حقوق جزای عمومی – آیین دادرسی کیفری (صفحات ۱ تا ۵)</title>
+
+  <!-- فونت فارسی زیبا (اختیاری؛ اگر اینترنت نباشد فونت سیستم استفاده می‌شود) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#17212b;
+      --muted:#5b6672;
+      --border:#e6e8ef;
+
+      --primary:#2d6cdf; /* رنگ اصلی */
+      --accent:#ffb020;  /* رنگ دوم */
+
+      --note:#fff7db;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+      --lh: 2.05;
+    }
+
+    [data-theme="dark"]{
+      --bg:#0f1220;
+      --card:#151a2e;
+      --text:#eef2ff;
+      --muted:#b7c0d8;
+      --border:rgba(255,255,255,.12);
+
+      --primary:#7aa2ff;
+      --accent:#ffd38a;
+
+      --note: rgba(255,211,138,.14);
+      --shadow: 0 12px 36px rgba(0,0,0,.35);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0; padding:24px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Vazirmatn", system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+      line-height: var(--lh);
+    }
+    .wrap{ max-width: 980px; margin: 0 auto; }
+
+    header{
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+      margin-bottom: 16px;
+    }
+    .title{ display:flex; flex-direction:column; gap:4px; }
+    h1{ margin:0; font-size: 22px; letter-spacing:.2px; }
+    .subtitle{ color: var(--muted); font-size: 13px; }
+
+    .toolbar{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .btn{
+      border:1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-size: 13px;
+      display:flex; gap:8px; align-items:center;
+    }
+    .btn:hover{ border-color: color-mix(in srgb, var(--primary) 55%, var(--border)); }
+
+    .chip{
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
+      border:1px solid var(--border);
+      padding:7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      display:flex; gap:8px; align-items:center;
+    }
+
+    .grid{ display:grid; gap:14px; }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px;
+    }
+
+    .toc{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 6px; }
+    .toc a{
+      text-decoration:none;
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border));
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    .toc a:hover{ background: color-mix(in srgb, var(--primary) 16%, transparent); }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      display:flex; align-items:center; gap:10px;
+    }
+    h2 .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+      flex:0 0 auto;
+    }
+
+    .metaRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .pill{
+      padding:4px 10px;
+      border-radius:999px;
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      border:1px solid var(--border);
+    }
+
+    h3{ margin: 14px 0 6px; font-size: 15px; }
+    ul{ margin: 8px 0 0; padding: 0 18px 0 0; }
+    li{ margin: 6px 0; }
+
+    .def{
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--primary) 6%, transparent);
+      border: 1px dashed color-mix(in srgb, var(--primary) 25%, var(--border));
+      margin: 8px 0 0;
+    }
+
+    .note{
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: var(--note);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+      margin-top: 10px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width:720px){
+      .split{ grid-template-columns: 1fr; }
+    }
+
+    .kv{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+    }
+    .kv .k{ color: var(--muted); font-size: 13px; }
+    .kv .v{ margin-top: 4px; font-weight: 600; }
+
+    footer{
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align:center;
+    }
+
+    @media print{
+      body{ background:#fff; padding:0; }
+      .btn, .chip, .toc{ display:none !important; }
+      .card{ box-shadow:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>جزوه حقوق جزای عمومی – آیین دادرسی کیفری</h1>
+        <div class="subtitle">صفحات ۱ تا ۵ • قالب مطالعه‌محور • قابل پرینت/PDF</div>
+      </div>
+
+      <div class="toolbar">
+        <div class="chip" id="themeLabel">تم: روشن</div>
+        <button class="btn" id="toggleTheme" type="button">تغییر تم</button>
+        <button class="btn" type="button" onclick="window.print()">پرینت / PDF</button>
+      </div>
+    </header>
+
+    <div class="card">
+      <div class="k" style="color:var(--muted);font-size:13px;">فهرست سریع</div>
+      <div class="toc">
+        <a href="#p1">صفحه ۱</a>
+        <a href="#p2">صفحه ۲</a>
+        <a href="#p3">صفحه ۳</a>
+        <a href="#p4">صفحه ۴</a>
+        <a href="#p5">صفحه ۵</a>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- صفحه 1 -->
+      <section class="card" id="p1">
+        <h2><span class="dot"></span>صفحه ۱</h2>
+        <div class="metaRow">
+          <span class="pill">تاریخ: ۱۴۰۴/۰۸/۱۰</span>
+        </div>
+
+        <h3>مقدمه</h3>
+        <div class="def">
+          حقوق جزا با دستور و ضمانت اجرای کیفری سروکار دارد و هدف آن <strong>پیشگیری از جرم</strong> است.
+        </div>
+
+        <ul>
+          <li>در مواردی برای برقراری نظم و امنیت، وضع قوانین لازم است.</li>
+          <li>تخلف و مجازات کردن آن‌ها مثل: اتهام، تبرئه، زندان، و رسیدگی از طریق دادگاه.</li>
+        </ul>
+
+        <div class="note">
+          ⭐ <strong>نکته مهم — ماده ۲ قانون مجازات اسلامی (ق.م.ا):</strong><br>
+          هر رفتاری اعم از فعل یا ترک فعل که در قانون برای آن مجازات تعیین شده باشد، جرم محسوب می‌شود.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>بازدارندگی:</strong><br>
+          در گذشته برای آن مجازات معنی شده است، جرم محسوب می‌شود.
+        </div>
+
+        <h3>انواع مجازات‌ها (اقسام مجازات‌ها)</h3>
+        <ul>
+          <li>حد</li>
+          <li>قصاص</li>
+          <li>دیه</li>
+          <li>تعزیر</li>
+        </ul>
+
+        <div class="def">
+          ⭐ <strong>حد:</strong> مجازاتی است که موجب نوع، میزان و کیفیت اجرای آن در شرع مقدس تعیین شده است.
+        </div>
+      </section>
+
+      <!-- صفحه 2 -->
+      <section class="card" id="p2">
+        <h2><span class="dot"></span>صفحه ۲</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+          <span class="pill">تاریخ: ۱۴۰۴/۰۸/۱۴</span>
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۱۲:</strong><br>
+          قصاص، مجازات اصلی جنایات عمدی بر نفس یا اعضا و منافع است.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۱۷:</strong><br>
+          دیه، مالی است که به سبب جنایت غیرعمدی یا عمدی که قصاص ندارد، مقرر می‌شود.<br>
+          بر نفس، اعضاء و منافع و وظایف تعیین می‌شود.
+        </div>
+
+        <div class="def">
+          ⭐ <strong>تعزیر:</strong> مجازاتی است که مشمول عنوان حد، قصاص و دیه نیست و موجب قانون در موارد ارتکاب محرمات شرعی یا نقض مقررات حکومتی تعیین و اعمال می‌شود.
+        </div>
+
+        <div class="def">
+          <strong>در تعزیر:</strong> نوع، مقدار، کیفیت اجرا و شرایط مربوط به تخفیف، تعلیق و تبدیل مجازات توسط دادگاه تعیین می‌شود.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>اقسام تعزیر:</strong> موجب قانون تعیین می‌شود.
+        </div>
+
+        <div class="def">
+          ⭐ <strong>آیین دادرسی کیفری:</strong><br>
+          به مجموعه مقررات و قواعدی گفته می‌شود که برای کشف جرم، تعقیب متهم، تحقیقات مقدماتی، میانجی‌گری، صلح، صدور رأی، اجرای احکام و اعتراض به آرا پیش‌بینی شده است.
+        </div>
+      </section>
+
+      <!-- صفحه 3 -->
+      <section class="card" id="p3">
+        <h2><span class="dot"></span>صفحه ۳</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+          <span class="pill">تاریخ: ۱۴۰۴/۰۸/۱۳</span>
+        </div>
+
+        <div class="def">
+          تعریف وظایف و اختیارات مقامات قضایی و ضابطین دادگستری و رعایت حقوق متهم، بزه‌دیده و جامعه وضع می‌شود.
+        </div>
+
+        <div class="split">
+          <div class="kv">
+            <div class="k">تعقیب متهم</div>
+            <div class="v">دادستان</div>
+          </div>
+          <div class="kv">
+            <div class="k">اجرای آرا</div>
+            <div class="v">دادسرا</div>
+          </div>
+          <div class="kv">
+            <div class="k">کشف جرم</div>
+            <div class="v">ضابط دادگستری</div>
+          </div>
+          <div class="kv">
+            <div class="k">تحقیقات مقدماتی</div>
+            <div class="v">بازپرس</div>
+          </div>
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۲۸ قانون آیین دادرسی کیفری:</strong><br>
+          ضابطین دادگستری مأمورانی هستند که تحت نظارت و تعلیمات دادستان در کشف جرم، حفظ آثار و دلایل جرم، شناسایی متهم،
+          یافتن و جلوگیری از فرار یا مخفی شدن متهم، تحقیقات مقدماتی، ابلاغ اوراق و اجرای تصمیمات قضایی اقدام می‌کنند.
+        </div>
+
+        <h3>اقسام ضابطین دادگستری</h3>
+        <ul>
+          <li>الف) ضابطان عام</li>
+          <li>ب) ضابطان خاص</li>
+        </ul>
+      </section>
+
+      <!-- صفحه 4 -->
+      <section class="card" id="p4">
+        <h2><span class="dot"></span>صفحه ۴</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+        </div>
+
+        <div class="def">
+          ضابطین دادگستری اشخاصی هستند که به موجب قانون، مأموریت خاصی در حوزه کشف جرم دارند.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>شرایط انتخاب ضابط دادگستری:</strong>
+          <ul>
+            <li>داشتن کارت ضابط</li>
+            <li>آموزش مرتبط</li>
+            <li>صدور ابلاغ از مقام قضایی</li>
+          </ul>
+        </div>
+
+        <div class="def">
+          ضابطین دادگستری حق ورود به منازل و اماکن خصوصی را ندارند مگر به حکم قانون.
+        </div>
+
+        <h3>جرم مشهود و غیرمشهود</h3>
+        <ul>
+          <li><strong>الف) جرم مشهود:</strong> جرمی است که در مرئی و منظر ضابطین واقع شود یا بلافاصله پس از وقوع جرم، آثار و علائم آن مشاهده گردد.</li>
+          <li><strong>ب) جرم غیرمشهود:</strong> جرمی است که وقوع آن نیاز به تحقیق و بررسی دارد.</li>
+        </ul>
+      </section>
+
+      <!-- صفحه 5 -->
+      <section class="card" id="p5">
+        <h2><span class="dot"></span>صفحه ۵</h2>
+        <div class="metaRow">
+          <span class="pill">NOTE</span>
+          <span class="pill">تاریخ: ۱۴۰۴/۱۰/۰۸</span>
+        </div>
+
+        <div class="def">
+          <strong>تعریف متهم:</strong> شخصی است که اتهام به او وارد شده و دلایل کافی برای انتساب جرم وجود دارد.
+        </div>
+
+        <ul>
+          <li>متهم باید از حقوق خود مطلع شود.</li>
+        </ul>
+
+        <div class="note">
+          ⭐ <strong>ماده ۴۸:</strong> متهم می‌تواند از وکیل استفاده کند.
+        </div>
+
+        <div class="def">
+          <strong>دادستان + معاون دادستان</strong> ← دادسرا به‌عنوان مرجع تعقیب
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۲۵:</strong> ضابطین مکلف به رعایت حقوق شهروندی هستند.
+        </div>
+
+        <div class="note">
+          ⭐ <strong>ماده ۲۴:</strong> حق داشتن وکیل
+        </div>
+
+        <div class="note">
+          ⭐ <strong>برای احضار متهم:</strong><br>
+          ۵ روز مهلت باید داده شود و موضوع اتهام اعلام گردد.
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      جزوه HTML — برای مطالعه، مرور و پرینت • (تم روشن/تاریک قابل تغییر است)
+    </footer>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const label = document.getElementById("themeLabel");
+    const btn = document.getElementById("toggleTheme");
+
+    function setTheme(t){
+      root.setAttribute("data-theme", t);
+      label.textContent = "تم: " + (t === "dark" ? "تاریک" : "روشن");
+      localStorage.setItem("law_notes_theme", t);
+    }
+
+    const saved = localStorage.getItem("law_notes_theme");
+    setTheme(saved || "light");
+
+    btn.addEventListener("click", () => {
+      const now = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      setTheme(now);
+    });
+  </script>
+</body>
+</html>
